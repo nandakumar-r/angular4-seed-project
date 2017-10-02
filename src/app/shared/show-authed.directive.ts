@@ -1,0 +1,32 @@
+import { Directive, TemplateRef, ViewContainerRef, OnInit, Input } from '@angular/core';
+import { UserService } from './services/user-service.service';
+
+
+// tslint:disable-next-line:directive-selector
+@Directive({ selector: '[showAuthed]' })
+export class ShowAuthedDirective implements OnInit {
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private userService: UserService,
+    private viewContainer: ViewContainerRef
+  ) {}
+
+  condition: boolean;
+
+  ngOnInit() {
+    this.userService.isAuthenticated.subscribe(
+      (isAuthenticated) => {
+        if (isAuthenticated && this.condition || !isAuthenticated && !this.condition) {
+          this.viewContainer.createEmbeddedView(this.templateRef);
+        } else {
+          this.viewContainer.clear();
+        }
+      }
+    );
+  }
+
+  @Input() set showAuthed(condition: boolean) {
+    this.condition = condition;
+  }
+
+}
