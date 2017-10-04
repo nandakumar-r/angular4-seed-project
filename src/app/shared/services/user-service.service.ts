@@ -1,3 +1,4 @@
+import { HttpClient } from './../../services/http.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -17,7 +18,7 @@ export class UserService {
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
 constructor (
-  private apiService: ApiService,
+  private apiService: ApiService,private httpClient:HttpClient,
   private http: Http
 ) {}
 
@@ -25,7 +26,8 @@ constructor (
 // This runs once on application startup.
 populate() {
   // If JWT detected, attempt to get & store user's info
-  if (this.getToken()) {
+  var token=localStorage.getItem('token');
+  if (token) {
     this.apiService.get('/user')
     .subscribe(
       data => this.setAuth(data.user),
@@ -61,13 +63,12 @@ localStorage.removeItem('token');
 
 attemptAuth(type, credentials): Observable<User> {
   const route = (type === 'login') ? '/login' : '';
-  return this.apiService.post('/users' + route, {user: credentials})
-  .map(
-    data => {
-      this.setAuth(data.user);
-      return data;
-    }
-  );
+  return this.httpClient.post('http://localhost:3000/api/Users/login', credentials)
+      .map((response: any) => {
+         this.setAuth(response);
+        const json: any = response.json();
+        return json as any;
+      });
 }
 
 getCurrentUser(): User {

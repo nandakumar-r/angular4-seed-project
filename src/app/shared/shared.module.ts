@@ -1,3 +1,5 @@
+import { ListErrorsComponent } from './errors/errors.component';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
@@ -10,9 +12,9 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule
   ],
-  declarations: [ ShowAuthedDirective],
+  declarations: [ ShowAuthedDirective,ListErrorsComponent],
   exports: [
-    ShowAuthedDirective
+    ShowAuthedDirective,ListErrorsComponent
   ]
 })
 export class SharedModule { }

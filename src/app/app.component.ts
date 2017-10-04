@@ -1,3 +1,5 @@
+import { LoaderService } from './shared/services/loader.service';
+import { UserService } from './shared/services/user-service.service';
 import { Component, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
@@ -7,11 +9,17 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 })
 export class AppComponent {
   title = 'app';
-  constructor(public toastr: ToastsManager, vcr: ViewContainerRef) {
+  showLoader: boolean;
+  constructor(private loaderService: LoaderService,public toastr: ToastsManager, vcr: ViewContainerRef, private userService: UserService) {
     this.toastr.setRootViewContainerRef(vcr);
     this.showSuccess();
+      this.loaderService.status.subscribe((val: boolean) => {
+            this.showLoader = val;
+        });
+           this.userService.populate();
  }
  showSuccess() {
   this.toastr.success('You are awesome!', 'Success!');
 }
 }
+

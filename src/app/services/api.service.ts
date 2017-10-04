@@ -21,7 +21,7 @@ export class ApiService {
     };
 
     if (this.getToken()) {
-      headersConfig['Authorization'] = `Token ${this.getToken()}`;
+     // headersConfig['Authorization'] = `Token ${this.getToken()}`;
     }
     return new Headers(headersConfig);
   }
