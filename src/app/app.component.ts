@@ -13,13 +13,11 @@ export class AppComponent {
   constructor(private loaderService: LoaderService,public toastr: ToastsManager, vcr: ViewContainerRef, private userService: UserService) {
     this.toastr.setRootViewContainerRef(vcr);
     this.showSuccess();
-      this.loaderService.status.subscribe((val: boolean) => {
-            this.showLoader = val;
-        });
-           this.userService.populate();
+    this.userService.populate();
  }
  showSuccess() {
   this.toastr.success('You are awesome!', 'Success!');
+  this.toastr.error('This is not good!', 'Oops!');
 }
 }
 

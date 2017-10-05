@@ -1,8 +1,5 @@
 import { Directive, TemplateRef, ViewContainerRef, OnInit, Input } from '@angular/core';
 import { UserService } from './services/user-service.service';
-
-
-// tslint:disable-next-line:directive-selector
 @Directive({ selector: '[showAuthed]' })
 export class ShowAuthedDirective implements OnInit {
   constructor(

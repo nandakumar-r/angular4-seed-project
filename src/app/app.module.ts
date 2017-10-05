@@ -1,3 +1,4 @@
+import { ShowLoaderDirective } from './app.directives/show-loader.directives';
 import { LoaderService } from './shared/services/loader.service';
 import { HttpClient } from './services/http.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +24,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ShowLoaderDirective
   ],
   imports: [
     BrowserModule ,AuthModule, ToastModule.forRoot(), BrowserAnimationsModule, SharedModule, RouterModule, HttpModule,rootRouting,HomeModule,
