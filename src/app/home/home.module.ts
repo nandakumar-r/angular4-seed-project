@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 import { HomeAuthResolver } from './home-auth-resolver.service';
+import {ModalModule} from "ng2-modal";
 
 
 const homeRouting: ModuleWithProviders = RouterModule.forChild([
@@ -19,7 +20,8 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
 @NgModule({
   imports: [
     homeRouting,
-    SharedModule
+    SharedModule,
+    ModalModule
   ],
   declarations: [
     HomeComponent

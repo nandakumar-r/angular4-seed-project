@@ -1,3 +1,4 @@
+import { ModalModule } from 'ng2-modal';
 import { ListErrorsComponent } from './errors/errors.component';
 
 import { NgModule } from '@angular/core';
@@ -10,7 +11,8 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ModalModule
   ],
   declarations: [ ShowAuthedDirective,ListErrorsComponent],
   exports: [
